@@ -45,7 +45,6 @@ type BotData struct {
 			}
 			HTTP2TRANSPORT struct {
 				SettingsOrder []string `json:"settingsorder"`
-				AllowHTTP     bool     `json:"allowhttp"`
 				Settings      struct {
 					Frames []struct {
 						Key   int `json:"key"`
