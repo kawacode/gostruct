@@ -29,7 +29,9 @@ type BotData struct {
 			Proxy              string            `json:"proxy"`
 			Ja3                string            `json:"ja3"`
 			URL                string            `json:"url"`
-			ReadResponse       bool              `json:"readresponse"`
+			ReadResponseBody   bool              `json:"readresponse"`
+			ReadHeaders        bool              `json:"readheaders"`
+			ReadCookies        bool              `json:"readcookies"`
 			Method             string            `json:"method"`
 			Headers            map[string]string `json:"headers"`
 			Payload            string            `json:"payload"`
@@ -45,7 +47,6 @@ type BotData struct {
 			}
 			HTTP2TRANSPORT struct {
 				SettingsOrder []string `json:"settingsorder"`
-				AllowHTTP     bool     `json:"allowhttp"`
 				Settings      struct {
 					Frames []struct {
 						Key   int `json:"key"`
