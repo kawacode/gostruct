@@ -30,8 +30,8 @@ type BotData struct {
 			Ja3                string            `json:"ja3"`
 			URL                string            `json:"url"`
 			ReadResponseBody   bool              `json:"readresponse"`
-			ReadHeaders        bool              `json:"readheaders"`
-			ReadCookies        bool              `json:"readcookies"`
+			ReadResponseHeaders        bool              `json:"readheaders"`
+			ReadResponseCookies        bool              `json:"readcookies"`
 			Method             string            `json:"method"`
 			Headers            map[string]string `json:"headers"`
 			Payload            string            `json:"payload"`
