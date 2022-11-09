@@ -3,6 +3,7 @@ package gostruct
 import (
 	"net/url"
 
+	"github.com/kawacode/fhttp/http2"
 	tls "github.com/kawacode/utls"
 )
 
@@ -24,42 +25,34 @@ type BotData struct {
 			WasUncompressed bool              `json:"isuncompressed"`
 		}
 		Request struct {
-			InsecureSkipVerify bool              `json:"insecureskipverify"`
-			HelloClient        tls.ClientHelloID `json:"helloclient"`
-			Proxy              string            `json:"proxy"`
-			Ja3                string            `json:"ja3"`
-			URL                string            `json:"url"`
-			ReadResponseBody   bool              `json:"readresponse"`
-			ReadResponseHeaders        bool              `json:"readheaders"`
-			ReadResponseCookies        bool              `json:"readcookies"`
-			Method             string            `json:"method"`
-			Headers            map[string]string `json:"headers"`
-			Payload            string            `json:"payload"`
+			InsecureSkipVerify  bool              `json:"insecureskipverify"`
+			HelloClient         tls.ClientHelloID `json:"helloclient"`
+			Proxy               string            `json:"proxy"`
+			Ja3                 string            `json:"ja3"`
+			URL                 string            `json:"url"`
+			ReadResponseBody    bool              `json:"readresponse"`
+			ReadResponseHeaders bool              `json:"readheaders"`
+			ReadResponseCookies bool              `json:"readcookies"`
+			Method              string            `json:"method"`
+			Headers             map[string]string `json:"headers"`
+			Payload             string            `json:"payload"`
 			// Default 2.0
 			Protocol           string   `json:"protocol"`
 			Timeout            string   `json:"timeout"`
 			MaxRedirects       string   `json:"maxredirects"`
 			HeaderOrderKey     []string `json:"headerorderkey"`
-			PHeaderOrderKey    []string `json:"pheaderorderkey"`
 			DisableCompression bool     `json:"disablecompression"`
 			HTTP1TRANSPORT     struct {
 				ForceAttemptHTTP2 bool `json:"forceattempthttp2"`
 			}
 			HTTP2TRANSPORT struct {
-				SettingsOrder []string `json:"settingsorder"`
-				Settings      struct {
-					Frames []struct {
-						Key   int `json:"key"`
-						Value int `json:"value"`
-					} `json:"frames"`
-					Priorities []struct {
-						StreamID  int  `json:"streamid"`
-						StreamDEP int  `json:"streamdep"`
-						Exclusive bool `json:"exclusive"`
-						Weight    int  `json:"weight"`
-					} `json:"priorities"`
-					Windowupdate int `json:"windowupdate"`
-				} `json:"settings"`
+				ClientProfile struct {
+					Settings          map[http2.SettingID]uint32
+					SettingsOrder     []http2.SettingID
+					PseudoHeaderOrder []string
+					ConnectionFlow    uint32
+					Priorities        []http2.Priority
+				}
 			}
 		}
 	}
