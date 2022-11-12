@@ -26,9 +26,9 @@ type BotData struct {
 		}
 		Request struct {
 			InsecureSkipVerify  bool              `json:"insecureskipverify"`
-			HelloClient         tls.ClientHelloID `json:"helloclient"`
+			Client              tls.ClientHelloID `json:"client"`
 			Proxy               string            `json:"proxy"`
-			Ja3                 string            `json:"ja3"`
+			ClientSpec          string            `json:"clientspec"`
 			URL                 string            `json:"url"`
 			ReadResponseBody    bool              `json:"readresponse"`
 			ReadResponseHeaders bool              `json:"readheaders"`
